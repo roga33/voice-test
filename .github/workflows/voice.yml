@@ -1,0 +1,22 @@
+name: Make voice
+on:
+  workflow_dispatch:
+jobs:
+  make-voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -U qwen-tts soundfile
+      - name: Make voice
+        run: python make_voice.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: voice
+          path: "*.wav"
