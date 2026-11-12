@@ -1,4 +1,4 @@
-concurrency:name: Make voice
+name: Make voice
 on:
   workflow_dispatch:
 jobs:
